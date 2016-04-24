@@ -44,7 +44,7 @@ for gpio in gpios:
 		print(input1)
 		print(input2)
 	
-if(errorPins.length > 0):
+if(len(errorPins) > 0):
 	print("Errors Detected")
 	print(errorPins)
 	sys.exit("Not all GPIO Pins passed")
