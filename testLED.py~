@@ -3,7 +3,7 @@
 # Test flashing an LED
 
 import time
-t = 0.2
+TIME = 0.2
 
 
 # RTk.GPIO

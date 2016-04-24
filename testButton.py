@@ -7,11 +7,11 @@ TIME = 0.1
 
 # Raspberry Pi
 #import RPI.GPIO as GPIO
-BUTTON = 4
+#BUTTON = 4
 
 # Arduino
 import anyio.GPIO as GPIO
-BUTTON = 4
+BUTTON = 24
 
 def setup():
   GPIO.setmode(GPIO.BCM)

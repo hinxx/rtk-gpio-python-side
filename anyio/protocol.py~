@@ -80,7 +80,8 @@ class GPIOClient:
   def setup(self, channel, mode):
     #TODO outer wrapper needs to do validation
     #if channel < self.MIN_PIN or channel > self.MAX_PIN:
-    #  raise ValueError("Invalid pin") 
+    #  
+raise ValueError("Invalid pin") 
 	   
     pinch = _pinch(channel)
     #print(pinch)
