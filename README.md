@@ -15,12 +15,15 @@ Raspberry Pi, PC, Mac and Linux computers.
 
 This package consists of two parts - a Python module that runs on a PC, 
 Mac or Linux machine (well, anything that can run Python and pyserial), 
-and some firmware that is programmed into an Arduino board.
-At the moment we only support an Arduino Pro Micro from SparkFun, but 
-there's nothing really stopping it working on any Arduino. 
-The two are linked together by a serial port controlled by the pyserial 
+and some firmware that is programmed to a microcontroller.
+
+ The two are linked together by a serial port controlled by the pyserial 
 library. Calls to the anyio.GPIO methods on the host computer will 
-cause reads or writes to the GPIO pins on the arduino platform.
+cause reads or writes to the GPIO pins on the microcontroller platform.
+
+Supported Boards Are:
+Arduino Pro Micro
+<Insert new board here>
 
 
 In this way, it is possible to write a hardware control program on any 
@@ -30,45 +33,26 @@ to "import anyio.GPIO as GPIO" and change your pin numbers, and you'll
 be working in no time!
 
 
-The serial link between the two parts runs at 115200bps, and each 
+The serial link between the two parts runs at varying speeds depending o the microcontroller, and each 
 command is only a few characters, so the system performs reasonably well
 unless you are repeatedly polling or changing lots of GPIO's at the same 
 time.
 
+The arduino pro micro runs at 115200 Baud and the <Insert new board here> at a faster baud rate.
 
-USING A PRE-PROGRAMMED PRO-MICRO
+
+Board Options
 ----
+Currently the <Insert new board here> is being funded on kickstarter over at 
 
-For your convenience, you can buy an Arduino Pro Micro 3.3V 8MHz
-device with pre-soldered pin headers and pre-programmed anyio firmware
-from here:
-
+You can also buy an arduino pro mico pre-programmed ready to go from:
 http://skpang.co.uk/catalog/pro-micro-33v8mhz-with-headers-and-anyio-firmware-p-1327.html
 
 All you need to do is plug it in, download this module by choosing
 the "Download as Zip" button, unzip the file and run the test programs,
 and you'll be working in no time!
 
-
-PROGRAMMING THE PRO MICRO YOURSELF
-----
-
-If you are already familiar with Arduino programming and soldering, 
-you might like to buy the raw components yourself and solder some
-headers on and program it yourself.
-
-
-You can buy the bare unprogrammed Sparkfun ProMicro from here:
-https://www.sparkfun.com/products/12587
-
-
-You can learn how to program the firmware here:
-
-https://learn.sparkfun.com/tutorials/pro-micro--fio-v3-hookup-guide/introduction
-
-
-The firmware that I use is in the following folder:
-anyio/arduino/firmware/gpio/gpio.ino
+You can also program your own pro micro and flash the firmware located at anyio/arduino/firmware/gpio/gpio.ino to get going.
 
 
 TESTING THE PRO MICRO
