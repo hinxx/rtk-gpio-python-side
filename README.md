@@ -1,8 +1,9 @@
-anyio
+anyio V2.0
 =====
 
 A GPIO Python module, that works on many platforms.
 
+Based on anyio by David Whale @whaleygeek, Improved by Ryan Walmsley @Ryanteck
 
 The anyio package aims to mimic the basic functionality of the RPi.GPIO
 Python module that is used on the Raspberry Pi computer. 
