@@ -22,7 +22,7 @@ for gpio in gpios:
 print("Setting up GPIO Ins on the RPi Board")
 for gpio in gpios:
 	print(gpio)
-	RPIGPIO.setup(gpio, RPIGPIO.IN,pull_up_down=RPIGPIO.PUD_DOWN)
+	RPIGPIO.setup(gpio, RPIGPIO.IN)
 
 print("Now Testing")
 for gpio in gpios:
