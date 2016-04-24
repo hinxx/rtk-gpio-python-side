@@ -36,7 +36,7 @@ for gpio in gpios:
 	RTKGPIO.output(gpio,1)
 	print("Reading input")
 	input2 = RPIGPIO.input(gpio)	
-	if(input1 == 0 && input2 ==1):
+	if(input1 == 0 and input2 ==1):
 		print("GPIO Pin Passed")
 	else:
 		errorPins.push(gpio)
