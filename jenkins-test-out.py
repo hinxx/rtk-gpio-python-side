@@ -4,6 +4,7 @@ import anyio.GPIO as RTKGPIO
 #And now the RPi header
 import RPi.GPIO as RPIGPIO
 import sys
+from time import sleep
 
 #Set the modes
 RPIGPIO.setmode(RPIGPIO.BCM)
@@ -29,11 +30,13 @@ for gpio in gpios:
 	print("Testing GPIO%s",str(gpio))
 	print("Turning off")
 	RTKGPIO.output(gpio,0)
+	sleep(0.1)
 	print("Reading input")
 	input1 = RPIGPIO.input(gpio)
 
 	print("Turning on")
 	RTKGPIO.output(gpio,1)
+	sleep(0.1)
 	print("Reading input")
 	input2 = RPIGPIO.input(gpio)	
 	if(input1 == 0 and input2 ==1):
@@ -43,6 +46,7 @@ for gpio in gpios:
 		print("GPIO Pin Failed")
 		print(input1)
 		print(input2)
+	sleep(0.1) #Sleep buffers required
 	
 if(len(errorPins) > 0):
 	print("Errors Detected")
