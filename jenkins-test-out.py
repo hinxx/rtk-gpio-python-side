@@ -12,8 +12,15 @@ RTKGPIO.setmode(RTKGPIO.BCM)
 gpios = [2]
 
 
+print("Setting up GPIO Outs on the RTK Board")
 #Setup the RPi
 for gpio in gpios:
-	print("Setting up GPIO Outs on the RTK Board")
-	RTKGPIO.setup(gpio, GPIO.OUT)
+	print(gpio)
+	RTKGPIO.setup(gpio, RTKGPIO.OUT)
 
+print("Setting up GPIO Ins on the RPi Board")
+for gpio in gpios:
+	print(gpio)
+	RPIGPIO.setup(gpio, RPIGPIO.IN)
+
+print("Tests done")
