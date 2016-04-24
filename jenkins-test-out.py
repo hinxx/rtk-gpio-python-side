@@ -39,8 +39,10 @@ for gpio in gpios:
 	if(input1 == 0 and input2 ==1):
 		print("GPIO Pin Passed")
 	else:
-		errorPins.push(gpio)
+		errorPins.append(gpio)
 		print("GPIO Pin Failed")
+		print(input1)
+		print(input2)
 	
 if(errorPins.length > 0):
 	print("Errors Detected")
