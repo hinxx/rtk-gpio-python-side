@@ -10,7 +10,7 @@ RPIGPIO.setmode(RPIGPIO.BCM)
 RTKGPIO.setmode(RTKGPIO.BCM)
 
 #Define GPIO pins
-gpios = [4]
+gpios = [4,23,24,25]
 errorPins = []
 
 print("Setting up GPIO Outs on the RTK Board")
