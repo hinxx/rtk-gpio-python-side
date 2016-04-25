@@ -19,7 +19,7 @@ print("Setting up GPIO Outs on the RTK Board")
 for gpio in gpios:
 	print(gpio)
 	RTKGPIO.setup(gpio, RTKGPIO.OUT)
-	sleep(0.1)
+	#sleep(0.1)
 
 print("Setting up GPIO Ins on the RPi Board")
 for gpio in gpios:
