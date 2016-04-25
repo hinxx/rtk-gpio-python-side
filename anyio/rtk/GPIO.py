@@ -4,7 +4,7 @@
 
 # CONFIGURATION ========================================================
    
-DEBUG = True
+DEBUG = False
 USE_EMBEDDED_PYSERIAL = True
 
 MIN_PIN = 2
