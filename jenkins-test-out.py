@@ -48,7 +48,7 @@ for gpio in gpios:
 		print("GPIO Pin Failed")
 		print(input1)
 		print(input2)
-	sleep(0.1) #Sleep buffers required
+	#sleep(0.1) #Sleep buffers required
 	
 if(len(errorPins) > 0):
 	print("Errors Detected")
