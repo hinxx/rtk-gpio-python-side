@@ -22,7 +22,7 @@ LOW     = 0
 
 from .. import protocol
 from .. import adaptors
-import portscan
+import anyio.rtk.portscan as portscan
 
 if USE_EMBEDDED_PYSERIAL:
   from os import sys, path
