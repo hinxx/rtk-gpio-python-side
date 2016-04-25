@@ -48,7 +48,7 @@ class SerialAdaptor:
     return buf
     
   def write(self, str):
-    self.serial.write(str)
+    self.serial.write(str.encode('ascii'))
 
 
 #TODO adapt a network.py connection to our normal connection scheme
