@@ -11,7 +11,7 @@ RPIGPIO.setmode(RPIGPIO.BCM)
 RTKGPIO.setmode(RTKGPIO.BCM)
 
 #Define GPIO pins
-gpios = [2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27]
+gpios = [2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]
 errorPins = []
 
 print("Setting up GPIO Outs on the RTK Board")
@@ -23,7 +23,7 @@ for gpio in gpios:
 print("Setting up GPIO Ins on the RPi Board")
 for gpio in gpios:
 	print(gpio)
-	RPIGPIO.setup(gpio, RPIGPIO.IN)
+	RPIGPIO.setup(gpio, RPIGPIO.IN,pull_up_down=RPIGPIO.PUD_DOWN)
 
 print("Now Testing")
 for gpio in gpios:
@@ -46,7 +46,7 @@ for gpio in gpios:
 		print("GPIO Pin Failed")
 		print(input1)
 		print(input2)
-	sleep(0.1) #Sleep buffers required
+	sleep(0.5) #Sleep buffers required
 	
 if(len(errorPins) > 0):
 	print("Errors Detected")
