@@ -34,7 +34,7 @@ for gpio in gpios:
 	RTKGPIO.output(gpio,0)
 	sleep(0.1)
 	print("Reading input")
-	input1 = RPIGPIO.input(gpio
+	input1 = RPIGPIO.input(gpio)
 
 	print("Turning on")
 	RTKGPIO.output(gpio,True)
