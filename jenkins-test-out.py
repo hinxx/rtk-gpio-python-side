@@ -33,13 +33,13 @@ for gpio in gpios:
 	print("Testing GPIO%s",str(gpio))
 	print("Turning off")
 	RTKGPIO.output(gpio,0)
-	#sleep(0.1)
+	sleep(0.1)
 	print("Reading input")
 	input1 = RPIGPIO.input(gpio)
 
 	print("Turning on")
 	RTKGPIO.output(gpio,True)
-	#sleep(0.1)
+	sleep(0.1)
 	print("Reading input")
 	input2 = RPIGPIO.input(gpio)	
 	if(input1 == 0 and input2 ==1):
