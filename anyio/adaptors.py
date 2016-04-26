@@ -39,7 +39,7 @@ class SerialAdaptor:
         time.sleep(0.1) # prevent CPU hogging
       else:
         #print("just read:" + data)
-        buf = buf + data.encode('ascii')
+        buf = buf + bytes(data)
         remaining -= len(data)
         if termset != None:
           if data[0] in termset:
