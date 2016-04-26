@@ -42,7 +42,7 @@ class SerialAdaptor:
         buf = buf + data
         remaining -= len(data)
         if termset != None:
-          if data[0] in termset:
+          if str(data)[0] in termset:
             break # terminator seen
         
     return buf
