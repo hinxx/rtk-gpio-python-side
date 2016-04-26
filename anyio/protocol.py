@@ -98,11 +98,12 @@ class GPIOClient:
     pinch = _pinch(channel)
     self._write(pinch + GPIO_READ + "\n")
     while True:
+      v = b''
       v = self._read(3, termset="\r\n")
       if len(v) == 3:
         break
       self.trace("retrying")
-    v = v.decode('ascii')
+    #v = v.decode('ascii')
     self.trace("input read back:" + v + " len:" + str(len(v)))
     if len(v) == 1:
       self.trace("single returned char is ord:" + str(ord(v[0])))
