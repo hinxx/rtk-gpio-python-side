@@ -102,7 +102,7 @@ class GPIOClient:
       if len(v) == 3:
         break
       self.trace("retrying")
-      
+    v = v.decode('ascii')
     self.trace("input read back:" + v + " len:" + str(len(v)))
     if len(v) == 1:
       self.trace("single returned char is ord:" + str(ord(v[0])))
