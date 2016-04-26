@@ -4,7 +4,7 @@
 # to include I2C, SPI, Uart, PWM, code load, and other stuff.
 # For now, it only supports the GPIO module and it is loaded
 # as the default context
-
+from pprint import pprint
 
 def trace(msg):
   print(msg)
@@ -104,6 +104,7 @@ class GPIOClient:
         break
       self.trace("retrying")
     #v = v.decode('ascii')
+	pprint(v)
     self.trace("input read back:" + v + " len:" + len(str(v)))
     if len(v) == 1:
       self.trace("single returned char is ord:" + str(ord(v[0])))
