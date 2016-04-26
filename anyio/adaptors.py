@@ -31,7 +31,7 @@ class SerialAdaptor:
     else:
       readsz = remaining
 
-    buf = ''
+    buf = b''
       
     while len(buf) < minsize:
       data = self.serial.read(readsz)
