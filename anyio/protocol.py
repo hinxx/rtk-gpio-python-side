@@ -98,7 +98,7 @@ class GPIOClient:
     pinch = _pinch(channel)
     self._write(pinch + GPIO_READ + "\n")
     while True:
-      v = b''
+     # v = b''
       v = self._read(3, termset="\r\n")
       if len(v) == 3:
         break

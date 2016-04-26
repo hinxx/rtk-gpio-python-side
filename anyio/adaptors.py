@@ -80,7 +80,7 @@ class NetAdaptor:
     else:
       readsz = remaining
 
-    buf = ''
+    buf = b''
       
     while len(buf) < minsize:
       #TODO ####
@@ -88,7 +88,7 @@ class NetAdaptor:
       if (len(data) == 0):
         time.sleep(0.1) # prevent CPU hogging
       else:
-        #print("just read:" + data)
+        print("just read:" + data)
         buf = buf + data
         remaining -= len(data)
         if termset != None:
