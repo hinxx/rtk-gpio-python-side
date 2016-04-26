@@ -104,7 +104,7 @@ class GPIOClient:
         break
       self.trace("retrying")
     #v = v.decode('ascii')
-    self.trace("input read back:" + v + " len:" + str(len(v)))
+    self.trace("input read back:" + v + " len:" + len(str(v)))
     if len(v) == 1:
       self.trace("single returned char is ord:" + str(ord(v[0])))
     valuech = v[1]
