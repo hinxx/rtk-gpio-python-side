@@ -4,7 +4,7 @@
 # to include I2C, SPI, Uart, PWM, code load, and other stuff.
 # For now, it only supports the GPIO module and it is loaded
 # as the default context
-from pprint import pprint
+
 
 def trace(msg):
   print(msg)
@@ -98,18 +98,16 @@ class GPIOClient:
     pinch = _pinch(channel)
     self._write(pinch + GPIO_READ + "\n")
     while True:
-     # v = b''
       v = self._read(3, termset="\r\n")
       if len(v) == 3:
         break
       self.trace("retrying")
-    #v = v.decode('ascii')
-      pprint(v)
-      self.trace("input read back:" + v + " len:" + str(len(v)))
-      if len(v) == 1:
-        self.trace("single returned char is ord:" + str(ord(v[0])))
-      valuech = v[1]
-      return _parse_valuech(valuech)
+      
+    self.trace("input read back:" + v + " len:" + str(len(v)))
+    if len(v) == 1:
+      self.trace("single returned char is ord:" + str(ord(v[0])))
+    valuech = v[1]
+    return _parse_valuech(valuech)
 
   def output(self, channel, value):
     #TODO outer wrapper needs to do validation

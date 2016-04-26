@@ -31,7 +31,7 @@ class SerialAdaptor:
     else:
       readsz = remaining
 
-    buf = b''
+    buf = ''
       
     while len(buf) < minsize:
       data = self.serial.read(readsz)
@@ -42,7 +42,7 @@ class SerialAdaptor:
         buf = buf + data
         remaining -= len(data)
         if termset != None:
-          if str(data)[0] in termset:
+          if data[0] in termset:
             break # terminator seen
         
     return buf
@@ -80,7 +80,7 @@ class NetAdaptor:
     else:
       readsz = remaining
 
-    buf = b''
+    buf = ''
       
     while len(buf) < minsize:
       #TODO ####
@@ -88,7 +88,7 @@ class NetAdaptor:
       if (len(data) == 0):
         time.sleep(0.1) # prevent CPU hogging
       else:
-        print("just read:" + data)
+        #print("just read:" + data)
         buf = buf + data
         remaining -= len(data)
         if termset != None:
