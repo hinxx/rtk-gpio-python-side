@@ -1,5 +1,7 @@
-anyio V2.0 Dev
+RTK anyio V2.0 Dev
 =====
+
+[![Build Status](http://rtkjenkins.servehalflife.com:8120/jenkins/buildStatus/icon?job=RTKGPIOPY)](http://rtkjenkins.servehalflife.com:8120/jenkins/job/RTKGPIOPY/)
 
 A GPIO Python module, that works on many platforms.
 
