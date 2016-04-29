@@ -1,4 +1,4 @@
-anyio V2.0
+anyio V2.0 Dev
 =====
 
 A GPIO Python module, that works on many platforms.

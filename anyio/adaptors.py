@@ -31,7 +31,7 @@ class SerialAdaptor:
     else:
       readsz = remaining
 
-    buf = ''
+    buf = b''
       
     while len(buf) < minsize:
       data = self.serial.read(readsz)
@@ -48,7 +48,7 @@ class SerialAdaptor:
     return buf
     
   def write(self, str):
-    self.serial.write(str)
+    self.serial.write(str.encode('ascii'))
 
 
 #TODO adapt a network.py connection to our normal connection scheme
