@@ -5,13 +5,15 @@ is provided for convenience in it's original form. The pyserial licence
 permits the package to be embedded inside other packages in this way.
 
 
-anyio Licence
+anyio V2 - RTK Licence
 
-Copyright (c) 2014 whaleygeek (David Whale)
+Copyright (c) 2014 whaleygeek (David Whale) & Ryanteck LTD. 2016
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to use the
 Software for educational or non commercial purposes.
+
+Commercial use is allowed under the basis that it can not be sold for any value, all modifications are re-published and you do not restrict the original author or any authors rights in any way.
 
 You agree to not restrict my rights in the use of this Software in any way.
 
