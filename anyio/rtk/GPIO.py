@@ -3,9 +3,9 @@
 # An ardunio (serial) based GPIO link
 
 # CONFIGURATION ========================================================
-   
-DEBUG = False
-USE_EMBEDDED_PYSERIAL = True
+
+DEBUG = True
+USE_EMBEDDED_PYSERIAL = False
 
 MIN_PIN = 2
 MAX_PIN = 22
@@ -31,7 +31,7 @@ if USE_EMBEDDED_PYSERIAL:
 
 import serial
 
-  
+
 # STATIC REDIRECTORS ===================================================
 
 # Find out if there is a pre-cached port name.
@@ -63,22 +63,22 @@ s.close()
 s.port = PORT
 s.open()
 
-    
+
 instance = protocol.GPIOClient(adaptors.SerialAdaptor(s), DEBUG)
-    
+
 def setmode(mode):
   instance.setmode(mode)
-  
+
 def setup(channel, mode):
   instance.setup(channel, mode)
-  
+
 def input(channel):
   return instance.input(channel)
-  
+
 def output(channel, value):
   instance.output(channel, value)
-  
+
 def cleanup():
   instance.cleanup()
-  
+
 # END
