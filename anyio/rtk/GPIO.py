@@ -5,10 +5,10 @@
 # CONFIGURATION ========================================================
 
 DEBUG = True
-USE_EMBEDDED_PYSERIAL = False
+USE_EMBEDDED_PYSERIAL = True
 
-MIN_PIN = 2
-MAX_PIN = 22
+MIN_PIN = 0
+MAX_PIN = 27
 
 IN      = 0
 OUT     = 1
