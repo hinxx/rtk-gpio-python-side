@@ -77,6 +77,10 @@ class GPIOClient:
     #BCM or BOARD, only for compatibility with RPi.GPIO
     pass
 
+def setwarnings(self, mode):
+    #RTk.GPIO doesn't output warnings so this is just pass
+    pass
+
   def setup(self, channel, mode):
     #TODO outer wrapper needs to do validation
     #if channel < self.MIN_PIN or channel > self.MAX_PIN:
