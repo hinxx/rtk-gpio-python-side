@@ -19,6 +19,7 @@ GPIO_MODE_INPUT  = "I"
 GPIO_MODE_OUTPUT = "O"
 
 GPIO_READ       = "?"
+GPIO_ANALOG       = "A"
 GPIO_VALUE_HIGH = "1"
 GPIO_VALUE_LOW  = "0"
 
@@ -45,6 +46,15 @@ def _parse_valuech(ch):
   if ch == GPIO_VALUE_HIGH:
     return True
   error("Unknown value ch:" + ch)
+  return GPIO_VALUE_HIGH
+
+def _parse_avalue(ch):
+  print(ch)
+  if ch == GPIO_VALUE_LOW:
+    return False
+  if ch == GPIO_VALUE_HIGH:
+    return True
+  error("Unknown value ch:" + str(ch))
   return GPIO_VALUE_HIGH
 
 #def _parse_modech(ch):
@@ -77,9 +87,34 @@ class GPIOClient:
     #BCM or BOARD, only for compatibility with RPi.GPIO
     pass
 
-def setwarnings(self, mode):
+  def setwarnings(self, mode):
     #RTk.GPIO doesn't output warnings so this is just pass
     pass
+
+  def cake(self, channel):
+  #RTk.GPIO doesn't output warnings so this is just pass
+
+    pinch = _pinch(channel)
+    self._write(pinch)
+    self._write(GPIO_ANALOG)
+    while True:
+      v = self._read(10, termset="\r\n")
+      #print(v)
+     # print(len(v))
+      if len(v) == 10:
+        break
+      self.trace("retrying")
+
+    self.trace("input read back:" + v + " len:" + str(len(v)))
+    if len(v) == 1:
+      self.trace("single returned char is ord:" + str(ord(v[0])))
+    #print(v)
+    v = v.split("i")[1]
+    #print(v)
+    value = float(v)
+    #rint(value)
+    return (value)
+    #return _parse_valuech("moo")
 
   def setup(self, channel, mode):
     #TODO outer wrapper needs to do validation
@@ -112,6 +147,8 @@ def setwarnings(self, mode):
       self.trace("single returned char is ord:" + str(ord(v[0])))
     valuech = v[1]
     return _parse_valuech(valuech)
+
+
 
   def output(self, channel, value):
     #TODO outer wrapper needs to do validation

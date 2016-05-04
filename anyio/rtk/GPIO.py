@@ -4,7 +4,7 @@
 
 # CONFIGURATION ========================================================
 
-DEBUG = True
+DEBUG = False
 USE_EMBEDDED_PYSERIAL = True
 
 MIN_PIN = 0
@@ -50,7 +50,7 @@ else:
   print("Your anyio board has been detected")
   print("Now running your program...")
 
-BAUD = 3000000
+BAUD = 460800
 
 
 s = serial.Serial(PORT)
@@ -66,6 +66,9 @@ s.open()
 
 instance = protocol.GPIOClient(adaptors.SerialAdaptor(s), DEBUG)
 
+def setwarnings(option):
+  instance.setwarnings(option)
+
 def setmode(mode):
   instance.setmode(mode)
 
@@ -78,7 +81,11 @@ def input(channel):
 def output(channel, value):
   instance.output(channel, value)
 
+def analogIn(channel):
+  return instance.cake(channel)
+
 def cleanup():
   instance.cleanup()
+
 
 # END
