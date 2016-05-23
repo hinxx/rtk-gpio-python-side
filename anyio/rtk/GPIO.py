@@ -19,6 +19,7 @@ LOW     = 0
 
 PUD_DOWN = 21
 PUD_UP = 22
+VERSION = "RTk.GPIO 0.1A"
 
 
 # OS INTERFACE =========================================================
