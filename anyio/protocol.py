@@ -23,6 +23,11 @@ GPIO_ANALOG       = "A"
 GPIO_VALUE_HIGH = "1"
 GPIO_VALUE_LOW  = "0"
 
+PUD_DOWN = 21
+PUD_UP = 22
+GPIO_PULL_DOWN  = "D"
+GPIO_PULL_UP  = "U"
+
 def _pinch(channel):
   return chr(channel+ord('a'))
 
@@ -35,6 +40,11 @@ def _modech(mode):
   if mode == None or mode == IN:
     return GPIO_MODE_INPUT
   return GPIO_MODE_OUTPUT
+
+def _pudch(pud):
+  if pud == PUD_DOWN:
+    return GPIO_PULL_DOWN
+  return GPIO_PULL_UP
 
 # Needed for Server later
 #def _parse_pinch(ch):
@@ -74,6 +84,9 @@ class GPIOClient:
   IN = 0
   OUT = 1
   DEBUG = False
+  PUD_DOWN = 21
+  PUD_UP = 22
+
 
   def trace(self, msg):
     if self.DEBUG:
@@ -116,7 +129,7 @@ class GPIOClient:
     return (value)
     #return _parse_valuech("moo")
 
-  def setup(self, channel, mode):
+  def setup(self, channel, mode,pull_up_down=None):
     #TODO outer wrapper needs to do validation
     #if channel < self.MIN_PIN or channel > self.MAX_PIN:
     #  raise ValueError("Invalid pin")
@@ -128,6 +141,11 @@ class GPIOClient:
     #print(modech)
     self._write(pinch + modech)
     #TODO read and verify echoback
+    #Pullupdown
+    if(pull_up_down!=None):
+      pudch = _pudch(pull_up_down)
+      self._write(pinch + pudch)
+
 
   def input(self, channel):
     #self.trace("READ")

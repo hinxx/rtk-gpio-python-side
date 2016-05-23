@@ -17,6 +17,9 @@ BOARD   = 1
 HIGH    = 1
 LOW     = 0
 
+PUD_DOWN = 21
+PUD_UP = 22
+
 
 # OS INTERFACE =========================================================
 
@@ -72,8 +75,8 @@ def setwarnings(option):
 def setmode(mode):
   instance.setmode(mode)
 
-def setup(channel, mode):
-  instance.setup(channel, mode)
+def setup(channel, mode,pull_up_down):
+  instance.setup(channel, mode,pull_up_down)
 
 def input(channel):
   return instance.input(channel)
