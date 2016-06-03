@@ -53,7 +53,7 @@ else:
   print("Your anyio board has been detected")
   print("Now running your program...")
 
-BAUD = 460800
+BAUD = 230400
 
 
 s = serial.Serial(PORT)
@@ -75,7 +75,7 @@ def setwarnings(option):
 def setmode(mode):
   instance.setmode(mode)
 
-def setup(channel, mode,pull_up_down):
+def setup(channel, mode,pull_up_down=None):
   instance.setup(channel, mode,pull_up_down)
 
 def input(channel):
