@@ -9,7 +9,7 @@ t = 0.01
 # RTk.GPIO
 import anyio.GPIO as GPIO
 
-P = 21
+P = 22
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(P, GPIO.OUT)
