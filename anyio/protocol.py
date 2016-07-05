@@ -25,8 +25,10 @@ GPIO_VALUE_LOW  = "0"
 
 PUD_DOWN = 21
 PUD_UP = 22
+PUD_OFF = 20
 GPIO_PULL_DOWN  = "D"
 GPIO_PULL_UP  = "U"
+GPIO_PULL_NONE = "N"
 
 def _pinch(channel):
   return chr(channel+ord('a'))
@@ -44,7 +46,10 @@ def _modech(mode):
 def _pudch(pud):
   if pud == PUD_DOWN:
     return GPIO_PULL_DOWN
-  return GPIO_PULL_UP
+  elif pud == PUD_UP:
+	return GPIO_PULL_UP
+  else:
+	return GPIO_PULL_NONE
 
 # Needed for Server later
 #def _parse_pinch(ch):

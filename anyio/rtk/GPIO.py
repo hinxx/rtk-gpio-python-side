@@ -4,7 +4,7 @@
 
 # CONFIGURATION ========================================================
 
-DEBUG = False
+DEBUG = True
 USE_EMBEDDED_PYSERIAL = True
 
 MIN_PIN = 0
@@ -17,6 +17,7 @@ BOARD   = 1
 HIGH    = 1
 LOW     = 0
 
+PUD_OFF = 20
 PUD_DOWN = 21
 PUD_UP = 22
 VERSION = "RTk.GPIO 0.1A"
