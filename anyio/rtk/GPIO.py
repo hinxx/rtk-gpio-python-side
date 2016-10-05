@@ -3,12 +3,12 @@
 # An ardunio (serial) based GPIO link
 
 # CONFIGURATION ========================================================
-   
-DEBUG = False
+
+DEBUG = True
 USE_EMBEDDED_PYSERIAL = True
 
-MIN_PIN = 2
-MAX_PIN = 22
+MIN_PIN = 0
+MAX_PIN = 27
 
 IN      = 0
 OUT     = 1
@@ -16,6 +16,11 @@ BCM     = 0
 BOARD   = 1
 HIGH    = 1
 LOW     = 0
+
+PUD_OFF = 20
+PUD_DOWN = 21
+PUD_UP = 22
+VERSION = "RTk.GPIO 0.1A"
 
 
 # OS INTERFACE =========================================================
@@ -31,7 +36,7 @@ if USE_EMBEDDED_PYSERIAL:
 
 import serial
 
-  
+
 # STATIC REDIRECTORS ===================================================
 
 # Find out if there is a pre-cached port name.
@@ -63,22 +68,29 @@ s.close()
 s.port = PORT
 s.open()
 
-    
+
 instance = protocol.GPIOClient(adaptors.SerialAdaptor(s), DEBUG)
-    
+
+def setwarnings(option):
+  instance.setwarnings(option)
+
 def setmode(mode):
   instance.setmode(mode)
-  
-def setup(channel, mode):
-  instance.setup(channel, mode)
-  
+
+def setup(channel, mode,pull_up_down=None):
+  instance.setup(channel, mode,pull_up_down)
+
 def input(channel):
   return instance.input(channel)
-  
+
 def output(channel, value):
   instance.output(channel, value)
-  
+
+def analogIn(channel):
+  return instance.cake(channel)
+
 def cleanup():
   instance.cleanup()
-  
+
+
 # END

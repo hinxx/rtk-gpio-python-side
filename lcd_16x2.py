@@ -118,9 +118,9 @@ def main():
 
     time.sleep(3)
 
-   lcd_string("All done on a", LCD_LINE_1)
-   lcd_string("Desktop Computer", LCD_LINE_2)
-   time.sleep(3)
+    lcd_string("All done on a", LCD_LINE_1)
+    lcd_string("Desktop Computer", LCD_LINE_2)
+    time.sleep(3)
 def lcd_init():
   # Initialise display
   lcd_byte(0x33,LCD_CMD) # 110011 Initialise
