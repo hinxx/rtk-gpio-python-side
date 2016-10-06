@@ -23,6 +23,7 @@ PUD_DOWN = 21
 PUD_UP = 22
 VERSION = "RTk.GPIO 0.1A"
 RPI_REVISION = 3
+RPI_INFO = {'P1_REVISION': 3, 'RAM': 'Unknown', 'REVISION': '90092', 'TYPE': 'Unknown','PROCESSOR': 'Unknown','MANUFACTURER':'Unknown'}
 
 
 # OS INTERFACE =========================================================
