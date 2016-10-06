@@ -152,7 +152,7 @@ class GPIOClient:
     #RTk.GPIO doesn't output warnings so this is just pass
     pass
 
-  def cake(self, channel):
+  def analogueRead(self, channel):
   #RTk.GPIO doesn't output warnings so this is just pass
 
     pinch = _pinch(channel)
