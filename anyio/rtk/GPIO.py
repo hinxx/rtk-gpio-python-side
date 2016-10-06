@@ -35,7 +35,7 @@ from os import sys, path
 thisdir = path.dirname(path.abspath(__file__))
 sys.path.append(thisdir)
 
-import rtkserial
+import rtkserial as serial
 
 
 # STATIC REDIRECTORS ===================================================
