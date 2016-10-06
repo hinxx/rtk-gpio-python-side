@@ -4,8 +4,9 @@
 
 # CONFIGURATION ========================================================
 
-DEBUG = True
-USE_EMBEDDED_PYSERIAL = True
+DEBUG = False
+# There was the option to use the serial library pre-installed. This has changed so that we know the python lib in use is the one distributed with the rtk library.
+#If you wish to use the built in one instead change the import rtkserial to import serial which is below (Approx line 38)
 
 MIN_PIN = 0
 MAX_PIN = 27
@@ -30,12 +31,11 @@ from .. import protocol
 from .. import adaptors
 import anyio.rtk.portscan as portscan
 
-if USE_EMBEDDED_PYSERIAL:
-  from os import sys, path
-  thisdir = path.dirname(path.abspath(__file__))
-  sys.path.append(thisdir)
+from os import sys, path
+thisdir = path.dirname(path.abspath(__file__))
+sys.path.append(thisdir)
 
-import serial
+import rtkserial
 
 
 # STATIC REDIRECTORS ===================================================

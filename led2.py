@@ -4,7 +4,7 @@ t = 0.5
 import anyio.GPIO as GPIO
 
 RED = 24
-YEL = 23
+YEL = 7
 GRN = 22
 BUZZ = 5
 BUTT = 25
