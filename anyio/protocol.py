@@ -29,9 +29,46 @@ PUD_OFF = 20
 GPIO_PULL_DOWN  = "D"
 GPIO_PULL_UP  = "U"
 GPIO_PULL_NONE = "N"
+BOARDMODE = 0
+
+boardpins = {
+3 : 2,
+5 : 3,
+7 : 4,
+8 : 14,
+10 : 15,
+11 : 17,
+12 : 18,
+13 : 27,
+15 : 22,
+16 : 23,
+18 : 24,
+19 : 10,
+21 : 9,
+22 : 25,
+23 : 11,
+24 : 8,
+26 : 7,
+27 : 0,
+28 : 1,
+29 : 5,
+31 : 6,
+32 : 12,
+33 : 13,
+35 : 19,
+36 : 16,
+37 : 26,
+38 : 20,
+40 : 21}
 
 def _pinch(channel):
-  return chr(channel+ord('a'))
+    global BOARDMODE
+    print(BOARDMODE)
+    if(BOARDMODE==0):
+        return chr(channel+ord('a'))
+    else:
+        channel = boardpins[channel]
+        return chr(channel+ord('a'))
 
 def _valuech(value):
   if value == None or value == 0 or value == False:
@@ -91,6 +128,7 @@ class GPIOClient:
   DEBUG = False
   PUD_DOWN = 21
   PUD_UP = 22
+  BOARDMODE = 0
 
 
   def trace(self, msg):
@@ -102,8 +140,13 @@ class GPIOClient:
     self.DEBUG = debug
 
   def setmode(self, mode):
-    #BCM or BOARD, only for compatibility with RPi.GPIO
-    pass
+    global BOARDMODE
+
+    if(mode == 0):
+		BOARDMODE=0	
+    else:
+		#Mode is Board Mode so we need to set the BOARDMODE to 1
+		BOARDMODE=1
 
   def setwarnings(self, mode):
     #RTk.GPIO doesn't output warnings so this is just pass
@@ -140,7 +183,7 @@ class GPIOClient:
     #  raise ValueError("Invalid pin")
 
     pinch = _pinch(channel)
-    #print(pinch)
+    print(pinch)
 
     modech = _modech(mode)
     #print(modech)
