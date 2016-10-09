@@ -80,7 +80,11 @@ def setmode(mode):
   instance.setmode(mode)
 
 def setup(channel, mode,pull_up_down=None):
-  instance.setup(channel, mode,pull_up_down)
+  if type(channel) is list:
+    for c in channel:
+      instance.setup(c, mode,pull_up_down)
+  else:
+    instance.setup(channel, mode,pull_up_down)
 
 def input(channel):
   return instance.input(channel)
