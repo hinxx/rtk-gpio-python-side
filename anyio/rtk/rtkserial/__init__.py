@@ -10,7 +10,7 @@
 import importlib
 import sys
 
-from serial.serialutil import *
+from rtkserial.serialutil import *
 #~ SerialBase, SerialException, to_bytes, iterbytes
 
 __version__ = '3.1'
@@ -19,16 +19,16 @@ VERSION = __version__
 
 # pylint: disable=wrong-import-position
 if sys.platform == 'cli':
-    from serial.serialcli import Serial
+    from rtkserial.serialcli import Serial
 else:
     import os
     # chose an implementation, depending on os
     if os.name == 'nt':  # sys.platform == 'win32':
-        from serial.serialwin32 import Serial
+        from rtkserial.serialwin32 import Serial
     elif os.name == 'posix':
-        from serial.serialposix import Serial, PosixPollSerial, VTIMESerial  # noqa
+        from rtkserial.serialposix import Serial, PosixPollSerial, VTIMESerial  # noqa
     elif os.name == 'java':
-        from serial.serialjava import Serial
+        from rtkserial.serialjava import Serial
     else:
         raise ImportError("Sorry: no implementation for your platform ('%s') available" % (os.name,))
 

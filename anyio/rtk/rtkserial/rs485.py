@@ -14,7 +14,7 @@ NOTE: Some implementations may only support a subset of the settings.
 """
 
 import time
-import serial
+import rtkserial as serial
 
 
 class RS485Settings(object):

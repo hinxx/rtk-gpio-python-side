@@ -12,10 +12,10 @@
 # pylint: disable=invalid-name,too-few-public-methods
 import ctypes
 import time
-from serial import win32
+from rtkserial import win32
 
-import serial
-from serial.serialutil import SerialBase, SerialException, to_bytes, portNotOpenError, writeTimeoutError
+import rtkserial as serial
+from rtkserial.serialutil import SerialBase, SerialException, to_bytes, portNotOpenError, writeTimeoutError
 
 
 class Serial(SerialBase):

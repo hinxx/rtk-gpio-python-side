@@ -36,8 +36,8 @@ import sys
 import termios
 import time
 
-import serial
-from serial.serialutil import SerialBase, SerialException, to_bytes, portNotOpenError, writeTimeoutError
+import rtkserial as serial
+from rtkserial.serialutil import SerialBase, SerialException, to_bytes, portNotOpenError, writeTimeoutError
 
 
 class PlatformSpecificBase(object):

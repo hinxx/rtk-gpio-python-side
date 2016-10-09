@@ -72,8 +72,8 @@ try:
 except ImportError:
     import queue as Queue
 
-import serial
-from serial.serialutil import SerialBase, SerialException, to_bytes, iterbytes, portNotOpenError
+import rtkserial as serial
+from rtkserial.serialutil import SerialBase, SerialException, to_bytes, iterbytes, portNotOpenError
 
 # port string is expected to be something like this:
 # rfc2217://host:port

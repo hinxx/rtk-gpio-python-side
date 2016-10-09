@@ -7,7 +7,7 @@
 #
 # SPDX-License-Identifier:    BSD-3-Clause
 
-from serial.serialutil import *
+from rtkserial.serialutil import *
 
 
 def my_import(name):
