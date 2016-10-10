@@ -83,9 +83,9 @@ def _pudch(pud):
   if pud == PUD_DOWN:
     return GPIO_PULL_DOWN
   elif pud == PUD_UP:
-	return GPIO_PULL_UP
+    return GPIO_PULL_UP
   else:
-	return GPIO_PULL_NONE
+    return GPIO_PULL_NONE
 
 # Needed for Server later
 #def _parse_pinch(ch):
@@ -142,10 +142,10 @@ class GPIOClient:
     global BOARDMODE
 
     if(mode == 0):
-		BOARDMODE=0	
+        BOARDMODE=0
     else:
-		#Mode is Board Mode so we need to set the BOARDMODE to 1
-		BOARDMODE=1
+        #Mode is Board Mode so we need to set the BOARDMODE to 1
+        BOARDMODE=1
 
   def setwarnings(self, mode):
     #RTk.GPIO doesn't output warnings so this is just pass
@@ -179,7 +179,7 @@ class GPIOClient:
     #TODO outer wrapper needs to do validation
     #if channel < self.MIN_PIN or channel > self.MAX_PIN:
     #  raise ValueError("Invalid pin")
-	
+
     pinch = _pinch(channel)
     self.trace(pinch)
 
