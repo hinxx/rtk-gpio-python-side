@@ -1,3 +1,6 @@
 *.pyc
 *~
 portscan.cache
+build
+dist
+RTk.GPIO.egg-info
