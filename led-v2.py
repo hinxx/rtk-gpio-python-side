@@ -36,9 +36,7 @@ try:
 		sleep(t)
 		GPIO.output(GRN, False)
 		sleep(2)
-		GPIO.output(BUZZ, True)
-		sleep(t)
-		GPIO.output(BUZZ, False)
+
 	
 finally:
 	GPIO.cleanup()

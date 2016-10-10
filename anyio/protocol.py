@@ -63,7 +63,6 @@ boardpins = {
 
 def _pinch(channel):
     global BOARDMODE
-    print(BOARDMODE)
     if(BOARDMODE==0):
         return chr(channel+ord('a'))
     else:
@@ -101,7 +100,7 @@ def _parse_valuech(ch):
   return GPIO_VALUE_HIGH
 
 def _parse_avalue(ch):
-  print(ch)
+  self.trace(ch)
   if ch == GPIO_VALUE_LOW:
     return False
   if ch == GPIO_VALUE_HIGH:
@@ -160,8 +159,7 @@ class GPIOClient:
     self._write(GPIO_ANALOG)
     while True:
       v = self._read(10, termset="\r\n")
-      #print(v)
-     # print(len(v))
+
       if len(v) == 10:
         break
       self.trace("retrying")
@@ -169,9 +167,9 @@ class GPIOClient:
     self.trace("input read back:" + v + " len:" + str(len(v)))
     if len(v) == 1:
       self.trace("single returned char is ord:" + str(ord(v[0])))
-    #print(v)
+
     v = v.split("i")[1]
-    #print(v)
+
     value = float(v)
     #rint(value)
     return (value)
@@ -181,9 +179,9 @@ class GPIOClient:
     #TODO outer wrapper needs to do validation
     #if channel < self.MIN_PIN or channel > self.MAX_PIN:
     #  raise ValueError("Invalid pin")
-
+	
     pinch = _pinch(channel)
-    print(pinch)
+    self.trace(pinch)
 
     modech = _modech(mode)
     #print(modech)
