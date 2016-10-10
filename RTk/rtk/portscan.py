@@ -41,9 +41,9 @@ else:
   ask = raw_input
     
 if os.name == 'nt': #sys.platform == 'win32':
-    import anyio.rtk.ports_win32 as ports
+    import RTk.rtk.ports_win32 as ports
 elif os.name == 'posix':
-    import anyio.rtk.ports_unix as ports
+    import RTk.rtk.ports_unix as ports
 else:
     raise ImportError("No port lister available for:" + os.name)
 

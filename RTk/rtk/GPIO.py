@@ -30,14 +30,16 @@ RPI_INFO = {'P1_REVISION': 3, 'RAM': 'Unknown', 'REVISION': '90092', 'TYPE': 'Un
 
 from .. import protocol
 from .. import adaptors
-import anyio.rtk.portscan as portscan
+import RTk.rtk.portscan as portscan
 
-from os import sys, path
-thisdir = path.dirname(path.abspath(__file__))
-sys.path.append(thisdir)
+#from os import sys, path
+#thisdir = path.dirname(path.abspath(__file__))
+#sys.path.append(thisdir)
 
-import rtkserial as serial
+#import rtkserial as serial
 
+#Temporarily changing back to normal serial
+import serial
 
 # STATIC REDIRECTORS ===================================================
 

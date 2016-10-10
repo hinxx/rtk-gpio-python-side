@@ -75,7 +75,7 @@ elif DRIVER == "gui":
 elif DRIVER == "arduino":
   from arduino.GPIO import *
 elif DRIVER == "RTk":
-  from anyio.rtk.GPIO import *
+  from rtk.GPIO import *
 elif DRIVER == "net":
   from net.GPIO import *
 elif DRIVER == "RPi":
