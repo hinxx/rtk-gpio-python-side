@@ -1,89 +1,73 @@
-# anyio/GPIO.py  21/04/2014  D.J.Whale
+# anyio/arduino/GPIO.py  21/04/2014  D.J.Whale
 #
-# A configurable and flexible GPIO connector package
-# with multiple driver implementations to choose from.
-#
-
-"""
-This module should be imported like this:
-  import anyio.GPIO as GPIO
-
-then just use the GPIO.*() methods like any normal GPIO interface:
-  GPIO.output(1, True)
-
-Alternatively, you can import the driver module you want explicitly:
-  import anyio.console.GPIO as GPIO
-  GPIO.output(1, True)
-
-By importing any of these driver modules, an instance of the
-appropriate GPIOClient is automatically created with the default
-configuration inside the appropriate driver GPIO.py file
- 
-If you want more than one instance of a GPIO connector, you can do it
-by using the class module directly like this:
- 
-  import anyio.console.GPIOClient
-  GPIO = GPIOClient.GPIOClient(params)
-
-Then use the GPIO instance like any other module, it has all the
-same methods as the static redirector modules.
-  GPIO.output(1, True)
-"""
-
+# An ardunio (serial) based GPIO link
 
 # CONFIGURATION ========================================================
-# 1. Select which driver you want the anyio.GPIO connected to
 
-# Enable this if you want a console based GPIO simulator
-#DRIVER = "console"
+DEBUG = False
+# There was the option to use the serial library pre-installed. This has changed so that we know the python lib in use is the one distributed with the rtk library.
+#If you wish to use the built in one instead change the import rtkserial to import serial which is below (Approx line 38)
 
-# Enable this if you want a Tkinter based GUI GPIO simulator
-#DRIVER = "gui"
+MIN_PIN = 0
+MAX_PIN = 27
 
-# Enable this if you want an arduino GPIO on a serial port
-#DRIVER = "arduino"
+IN      = 0
+OUT     = 1
+BCM     = 0
+BOARD   = 1
+HIGH    = 1
+LOW     = 0
 
-# Enable this if you want a GPIO client the other end of a network
-#DRIVER = "net"
-
-# Enable this if using the Raspberry Pi via this redirector
-#DRIVER = "RPi"
-
-#Enable this if using the RTk.GPIO board
-DRIVER = "RTk"
-# 2. Inside the appropriate DRIVER.GPIO.py change the specific
-# configuration for that driver, such as which port to open,
-# how many pins it has, etc.
+PUD_OFF = 20
+PUD_DOWN = 21
+PUD_UP = 22
+VERSION = "RTk.GPIO 0.1A"
+RPI_REVISION = 3
+RPI_INFO = {'P1_REVISION': 3, 'RAM': 'Unknown', 'REVISION': '90092', 'TYPE': 'Unknown','PROCESSOR': 'Unknown','MANUFACTURER':'Unknown'}
 
 
-# STATIC REDIRECTOR ====================================================
+# OS INTERFACE =========================================================
 
-# The static redirectors are created by just importing the whole
-# namespace from the configured driver - this will bring in the
-# static redirectors from that module, and use whatever default
-# configuration that driver uses if it was used directly in the
-# form of the class based GPIOClient() interface.
-# This ensures there is no repeated code, and there is only one place
-# to look for the default configuration for a specific driver when
-# used with the static redirectors (i.e. import anyio.arduino.GPIO
-# and import anyio.GPIO are both the same)
+import protocol
+import adaptors
 
-if   DRIVER == "console":
-  from console.GPIO import *
-elif DRIVER == "gui":
-  from gui.GPIO import *
-elif DRIVER == "arduino":
-  from arduino.GPIO import *
-elif DRIVER == "RTk":
-  from RTk.rtk.GPIO import *
-elif DRIVER == "net":
-  from net.GPIO import *
-elif DRIVER == "RPi":
-  from RPi.GPIO import *
 
-else:
-  raise ValueError("Unknown driver:" + str(DRIVER))
-  
+#from os import sys, path
+#thisdir = path.dirname(path.abspath(__file__))
+#sys.path.append(thisdir)
+
+#import rtkserial as serial
+
+#Temporarily changing back to normal serial
+
+import rtkserial
+
+instance = protocol.GPIOClient(adaptors.SerialAdaptor(rtkserial.s), DEBUG)
+
+def setwarnings(option):
+  instance.setwarnings(option)
+
+def setmode(mode):
+  instance.setmode(mode)
+
+def setup(channel, mode,pull_up_down=None):
+  if type(channel) is list:
+    for c in channel:
+      instance.setup(c, mode,pull_up_down)
+  else:
+    instance.setup(channel, mode,pull_up_down)
+
+def input(channel):
+  return instance.input(channel)
+
+def output(channel, value):
+  instance.output(channel, value)
+
+def analogIn(channel):
+  return instance.cake(channel)
+
+def cleanup():
+  instance.cleanup()
+
+
 # END
-
-  
