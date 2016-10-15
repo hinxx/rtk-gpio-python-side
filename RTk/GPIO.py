@@ -28,8 +28,8 @@ RPI_INFO = {'P1_REVISION': 3, 'RAM': 'Unknown', 'REVISION': '90092', 'TYPE': 'Un
 
 # OS INTERFACE =========================================================
 
-import protocol
-import adaptors
+from RTk import protocol
+from RTk import adaptors
 
 
 #from os import sys, path
@@ -40,7 +40,7 @@ import adaptors
 
 #Temporarily changing back to normal serial
 
-import rtkserial
+from RTk import rtkserial
 
 instance = protocol.GPIOClient(adaptors.SerialAdaptor(rtkserial.s), DEBUG)
 

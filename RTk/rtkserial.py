@@ -1,5 +1,7 @@
 import serial
 import RTk.rtk.portscan as portscan
+
+DEBUG = False
 # STATIC REDIRECTORS ===================================================
 
 # Find out if there is a pre-cached port name.
