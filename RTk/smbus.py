@@ -4,7 +4,7 @@ import pprint
 from time import sleep
 serial = rtkserial.s
 print("imported rtkbus")
-i = 0.1
+i = 0.00178
 class SMBus:
 
     def __init__(self,bus):
@@ -15,23 +15,24 @@ class SMBus:
 
     def write_i2c_block_data(self,i2caddress,command,data):
 
-        #print(i2caddress)
-        #print(command)
-        #print(data)
+        #pprint.pprint(str(i2caddress)+","+str(command)+","+str(data))
         #Get the address and convert it to 8 bit for mbed
         i2caddress = hex(i2caddress<<1)
         #and now convert that to a letter
         i2caddrchar = chr(int(i2caddress,0))
         self._write("IW") #I2C write
-        sleep(i)
-        self._write(chr(int(len(data))))
-        sleep(i)
+        #sleep(i)
         self._write(i2caddrchar) # Write the 8 Bit I2C Address
-        sleep(i)
+        #sleep(i)
+        self._write(chr(int(len(data))))
+
+        #sleep(i)
         self._write(chr(int(hex(command),0))) # Write the command char
-        sleep(i)
+        #sleep(i)
         #Now write address to serial port
         for dataVal in data: #Write each item of data
+            #print(chr(int(hex(dataVal),0)))
             self._write(chr(int(hex(dataVal),0))) #Data
             sleep(i)
-        print("wrote block")
+        #print("wrote block")
+        #raw_input()
