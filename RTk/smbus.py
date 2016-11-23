@@ -4,7 +4,7 @@ import pprint
 from time import sleep
 serial = rtkserial.s
 print("imported rtkbus")
-i = 0.00178
+i = 0.0017
 class SMBus:
 
     def __init__(self,bus):

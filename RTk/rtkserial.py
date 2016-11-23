@@ -38,7 +38,7 @@ if(rtkGPIOPort == ""):
 #print ("Debug cable fully detected fine.\n Press enter to launch the terminal.")
 
 
-BAUD = 230400
+BAUD = 460800
 
 
 s = serial.Serial(rtkGPIOPort)

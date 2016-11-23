@@ -13,4 +13,4 @@ while True:
     piglow.set(i % 18, [15, 31, 63, 127, 255, 127, 63, 31, 15])
     piglow.show()
     i += 1
-    time.sleep(1)
+    time.sleep(0)
