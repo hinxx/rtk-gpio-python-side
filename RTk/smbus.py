@@ -36,3 +36,6 @@ class SMBus:
             sleep(i)
         #print("wrote block")
         #raw_input()
+
+    def read_word_data(self,i2caddress,command) :
+        //Read some data
