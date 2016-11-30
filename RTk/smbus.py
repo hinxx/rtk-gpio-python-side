@@ -30,10 +30,11 @@ class SMBus:
         self._write(chr(int(hex(command),0))) # Write the command char
         #sleep(i)
         #Now write address to serial port
-        for dataVal in data: #Write each item of data
+        for idx, dataVal in enumerate(data): #Write each item of data
             #print(chr(int(hex(dataVal),0)))
             self._write(chr(int(hex(dataVal),0))) #Data
-            sleep(i)
+			if(idx != len(data)):
+            	sleep(i)
         #print("wrote block")
         #raw_input()
 
