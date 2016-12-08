@@ -14,7 +14,6 @@ class SMBus:
         serial.write(str)
 
     def write_i2c_block_data(self,i2caddress,command,data):
-
         #Get the address and convert it to 8 bit for mbed and then convert to the char to send over.
         i2caddrchar = chr(int(hex(i2caddress<<1),0))
         #and now convert that to a letter
@@ -28,7 +27,8 @@ class SMBus:
             	sleep(i)
 
     def read_word_data(self,i2caddress,command) :
-        i2caddress = hex(i2caddress<<1)
-        #and now convert that to a letter
-        i2caddrchar = chr(int(i2caddress,0))
-        pass
+        #Get the address and convert it to 8 bit for mbed and then convert to the char to send over.
+        i2caddrchar = chr(int(hex(i2caddress<<1),0))
+        self._write("IR") #I2C Read
+        self._write(i2caddrchar)
+        self._write(chr(int(hex(command),0)))
