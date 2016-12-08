@@ -33,10 +33,13 @@ class SMBus:
         for idx, dataVal in enumerate(data): #Write each item of data
             #print(chr(int(hex(dataVal),0)))
             self._write(chr(int(hex(dataVal),0))) #Data
-			if(idx != len(data)):
+            if(idx != len(data)):
             	sleep(i)
         #print("wrote block")
         #raw_input()
 
     def read_word_data(self,i2caddress,command) :
-        //Read some data
+        i2caddress = hex(i2caddress<<1)
+        #and now convert that to a letter
+        i2caddrchar = chr(int(i2caddress,0))
+        pass
