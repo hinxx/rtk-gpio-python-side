@@ -12,6 +12,31 @@ class SMBus:
     def _write(self,str):
         #print((str))
         serial.write(str)
+    def _read(self, maxsize=1, minsize=None, termset=None, timeout=None):
+        if minsize == None:
+          minsize = maxsize
+
+        remaining = maxsize
+        if termset != None:
+          readsz = 1
+        else:
+          readsz = remaining
+
+        buf = b''
+
+        while len(buf) < minsize:
+          data = serial.read(readsz)
+          if (len(data) == 0):
+              time.sleep(0.1) # prevent CPU hogging
+          else:
+              #print("just read:" + data)
+              buf = buf + data
+              remaining -= len(data)
+              if termset != None:
+                  if data[0] in termset:
+                      break # terminator seen
+
+        return buf
 
     def write_i2c_block_data(self,i2caddress,command,data):
         #Get the address and convert it to 8 bit for mbed and then convert to the char to send over.
@@ -32,3 +57,4 @@ class SMBus:
         self._write("IR") #I2C Read
         self._write(i2caddrchar)
         self._write(chr(int(hex(command),0)))
+        print(int(self._read(1, termset="\r\n"),0))
