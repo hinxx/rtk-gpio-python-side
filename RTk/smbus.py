@@ -1,6 +1,6 @@
 #RTK.GPIO implementation of SMBUS
 import rtkserial
-import pprint
+from pprint import pprint
 from time import sleep
 serial = rtkserial.s
 print("imported rtkbus")
@@ -45,11 +45,32 @@ class SMBus:
         self._write("IW") #I2C write
         self._write(i2caddrchar) # Write the 8 Bit I2C address
         self._write(chr(int(len(data))))
+        print(len(data))
         self._write(chr(int(hex(command),0))) # Write the command char
         for idx, dataVal in enumerate(data): #Write each item of data
             self._write(chr(int(hex(dataVal),0))) #Data
+            print("data")
             if(idx != len(data)):
             	sleep(i)
+    def write_byte_data(self,i2caddress,command,data):
+        #Get the address and convert it to 8 bit for mbed and then convert to the char to send over.
+        i2caddrchar = chr(int(hex(i2caddress<<1),0))
+        print(command)
+        print(data)
+        #and now convert that to a letter
+        self._write("IW") #I2C write
+        self._write(i2caddrchar) # Write the 8 Bit I2C address
+        self._write(chr(int(1)))
+        self._write(chr(int(hex(command),0))) # Write the command char
+        self._write(chr(int(hex(data),0))) #Data
+        print("data")
+
+    def write_word_data(self,i2caddress,command,data):
+        pass
+
+    def write_byte(self,i2caddress,command):
+        #Write just a byte of data without no command
+        pass
 
     def read_word_data(self,i2caddress,command) :
         #Get the address and convert it to 8 bit for mbed and then convert to the char to send over.
@@ -57,4 +78,16 @@ class SMBus:
         self._write("IR") #I2C Read
         self._write(i2caddrchar)
         self._write(chr(int(hex(command),0)))
-        print(int(self._read(1, termset="\r\n"),0))
+        wordDat1 =int(serial.read().encode("hex"))
+        wordDat2 = int(serial.read().encode("hex"))
+        #return(wordDat2)
+        wordDat = int(hex((wordDat2<<8)+wordDat1),0)
+
+        return(wordDat)
+    def read_byte(self,i2caddress):
+        pass
+
+    def read_block_data(self,i2caddress,command):
+        pass
+    def read_byte_data(self,i2caddress,command):
+        pass
