@@ -7,15 +7,18 @@ outputs = [22,23,24,5]
 BUTT = 25
 
 GPIO.setmode(GPIO.BCM)
-sleep(t)
+#sleep(t)
 GPIO.setup(outputs, GPIO.OUT)
-sleep(t)
+#sleep(t)
 
-GPIO.setup(BUTT,GPIO.IN)
-sleep(t)
+GPIO.setup(BUTT,GPIO.IN,pull_up_down=GPIO.PUD_UP)
+#sleep(t)
+
 
 try:
 	while True:
+		while(GPIO.input(BUTT)):
+			pass
 		GPIO.output(22, True)
 		sleep(t)
 		GPIO.output(23, True)
@@ -28,6 +31,9 @@ try:
 		sleep(t)
 		GPIO.output(24, False)
 		sleep(2)
+		GPIO.output(5,True)
+		sleep(0.1)
+		GPIO.output(5,False)
 
 
 finally:
