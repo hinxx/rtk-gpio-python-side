@@ -4,7 +4,7 @@
 
 # CONFIGURATION ========================================================
 
-DEBUG = False
+DEBUG = True
 # There was the option to use the serial library pre-installed. This has changed so that we know the python lib in use is the one distributed with the rtk library.
 #If you wish to use the built in one instead change the import rtkserial to import serial which is below (Approx line 38)
 

@@ -5,7 +5,6 @@
 # For now, it only supports the GPIO module and it is loaded
 # as the default context
 
-
 def trace(msg):
   print(msg)
 
@@ -96,7 +95,7 @@ def _parse_valuech(ch):
     return False
   if ch == GPIO_VALUE_HIGH:
     return True
-  error("Unknown value ch:" + ch)
+  error("Unknown value ch:" + str(ch))
   return GPIO_VALUE_HIGH
 
 def _parse_avalue(ch):
@@ -164,7 +163,7 @@ class GPIOClient:
         break
       self.trace("retrying")
 
-    self.trace("input read back:" + v + " len:" + str(len(v)))
+    self.trace("input read back:" + str(v) + " len:" + str(len(v)))
     if len(v) == 1:
       self.trace("single returned char is ord:" + str(ord(v[0])))
 
@@ -205,11 +204,10 @@ class GPIOClient:
       if len(v) == 3:
         break
       self.trace("retrying")
-
-    self.trace("input read back:" + v + " len:" + str(len(v)))
+    self.trace("input read back:" + v.decode(encoding='UTF-8') + " len:" + str(len(v)))
     if len(v) == 1:
       self.trace("single returned char is ord:" + str(ord(v[0])))
-    valuech = v[1]
+    valuech = chr(v[1])
     return _parse_valuech(valuech)
 
 

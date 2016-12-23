@@ -3,7 +3,6 @@
 # Some adaptors to make the inner connectivity classes all work
 # in a standard way
 
-
 # adapt a pyserial (or anything else) to our common interface
 class SerialAdaptor:
 
@@ -42,7 +41,7 @@ class SerialAdaptor:
         buf = buf + data
         remaining -= len(data)
         if termset != None:
-          if data[0] in termset:
+          if chr(data[0]) in termset:
             break # terminator seen
 
     return buf
