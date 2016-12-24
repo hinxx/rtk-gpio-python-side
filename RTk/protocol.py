@@ -123,7 +123,7 @@ class GPIOClient:
   """
   IN = 0
   OUT = 1
-  DEBUG = False
+  DEBUG = True
   PUD_DOWN = 21
   PUD_UP = 22
   BOARDMODE = 0
@@ -198,16 +198,16 @@ class GPIOClient:
     #if channel < self.MIN_PIN or channel > self.MAX_PIN:
     #  raise ValueError("Invalid pin")
     pinch = _pinch(channel)
-    self._write(pinch + GPIO_READ + "\n")
+    self._write(pinch + GPIO_READ)
     while True:
-      v = self._read(3, termset="\r\n")
+      v = self._read(3, termset="\n")
       if len(v) == 3:
         break
       self.trace("retrying")
     self.trace("input read back:" + v.decode(encoding='UTF-8') + " len:" + str(len(v)))
     if len(v) == 1:
       self.trace("single returned char is ord:" + str(ord(v[0])))
-    valuech = chr(v[1])
+    valuech =v[1]
     return _parse_valuech(valuech)
 
 
