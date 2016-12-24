@@ -4,7 +4,7 @@
 # to include I2C, SPI, Uart, PWM, code load, and other stuff.
 # For now, it only supports the GPIO module and it is loaded
 # as the default context
-
+from builtins import bytes
 def trace(msg):
   print(msg)
 
@@ -199,15 +199,18 @@ class GPIOClient:
     #  raise ValueError("Invalid pin")
     pinch = _pinch(channel)
     self._write(pinch + GPIO_READ)
+
     while True:
-      v = self._read(4, termset="\n")
+      v = bytes(self._read(4, termset="\n"))
       if len(v) == 4:
         break
+
       self.trace("retrying")
     self.trace("input read back:" + v.decode(encoding='UTF-8') + " len:" + str(len(v)))
     if len(v) == 1:
       self.trace("single returned char is ord:" + str(ord(v[0])))
-    valuech =v[1]
+
+    valuech =chr(int(v[1]))
     return _parse_valuech(valuech)
 
 
