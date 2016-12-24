@@ -4,7 +4,6 @@
 # in a standard way
 
 # adapt a pyserial (or anything else) to our common interface
-from pprint import pprint
 class SerialAdaptor:
 
   def __init__(self, serial):
@@ -38,7 +37,6 @@ class SerialAdaptor:
       if (len(data) == 0):
         time.sleep(0.1) # prevent CPU hogging
       else:
-        pprint(data)
         #print("just read:" + data)
         buf = buf + data
         remaining -= len(data)

@@ -123,7 +123,7 @@ class GPIOClient:
   """
   IN = 0
   OUT = 1
-  DEBUG = True
+  DEBUG = False
   PUD_DOWN = 21
   PUD_UP = 22
   BOARDMODE = 0
@@ -200,8 +200,8 @@ class GPIOClient:
     pinch = _pinch(channel)
     self._write(pinch + GPIO_READ)
     while True:
-      v = self._read(3, termset="\n")
-      if len(v) == 3:
+      v = self._read(4, termset="\n")
+      if len(v) == 4:
         break
       self.trace("retrying")
     self.trace("input read back:" + v.decode(encoding='UTF-8') + " len:" + str(len(v)))
