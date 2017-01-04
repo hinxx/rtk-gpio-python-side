@@ -152,7 +152,7 @@ class GPIOClient:
 
 
 
-  def setup(self, channel, mode,pull_up_down=None):
+  def setup(self, channel, mode,pull_up_down=None,initial=0):
     #TODO outer wrapper needs to do validation
     #if channel < self.MIN_PIN or channel > self.MAX_PIN:
     #  raise ValueError("Invalid pin")
@@ -168,6 +168,16 @@ class GPIOClient:
     if(pull_up_down!=None):
       pudch = _pudch(pull_up_down)
       self._write(pinch + pudch)
+    if(initial==0):
+      pudch = _pudch(pull_up_down)
+      self._write(pinch + pudch)
+      self._write(pinch)
+      self._write(GPIO_VALUE_LOW)
+    if(initial==1):
+      pudch = _pudch(pull_up_down)
+      self._write(pinch + pudch)
+      self._write(pinch)
+      self._write(GPIO_VALUE_HIGH)
 
 
   def input(self, channel):

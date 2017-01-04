@@ -50,12 +50,12 @@ def setwarnings(option):
 def setmode(mode):
   instance.setmode(mode)
 
-def setup(channel, mode,pull_up_down=None):
+def setup(channel, mode,pull_up_down=None,initial=0):
   if type(channel) is list:
     for c in channel:
-      instance.setup(c, mode,pull_up_down)
+      instance.setup(c, mode,pull_up_down,initial)
   else:
-    instance.setup(channel, mode,pull_up_down)
+    instance.setup(channel, mode,pull_up_down,initial)
 
 def input(channel):
   return instance.input(channel)

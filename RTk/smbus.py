@@ -131,7 +131,7 @@ class SMBus:
         return(byteDat)
 
     def read_i2c_block_data(self,i2caddress,command):
-
+        #Read a block (16 Bytes) of I2C Data
         blockData = []
         #Get the address and convert it to 8 bit for mbed and then convert to the char to send over.
         i2caddrchar = chr(int(hex(i2caddress<<1),0))
