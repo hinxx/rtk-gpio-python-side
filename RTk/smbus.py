@@ -4,7 +4,7 @@ from pprint import pprint
 from time import sleep
 import binascii
 serial = rtkserial.s
-print("imported rtkbus3")
+print("imported rtkbus")
 i = 0.0017
 class SMBus:
 
@@ -49,7 +49,6 @@ class SMBus:
         self._write("IW") #I2C write
         self._write(i2caddrchar) # Write the 8 Bit I2C address
         self._write(chr(int(len(data))))
-        print(len(data))
         self._write(chr(int(hex(command),0))) # Write the command char
         for idx, dataVal in enumerate(data): #Write each item of data
             self._write(chr(int(hex(dataVal),16))) #Data
@@ -126,7 +125,7 @@ class SMBus:
         self._write(chr(int(hex(command),0)))
         wordDat1 =int(binascii.hexlify(serial.read()))
         #return(wordDat2)
-        wordDat = int(hex((wordDat1)),0)
+        byteDat = int(hex((wordDat1)),16)
         sleep(i)
 
         return(byteDat)
