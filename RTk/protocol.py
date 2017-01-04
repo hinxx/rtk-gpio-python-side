@@ -150,29 +150,7 @@ class GPIOClient:
     #RTk.GPIO doesn't output warnings so this is just pass
     pass
 
-  def analogueRead(self, channel):
-  #RTk.GPIO doesn't output warnings so this is just pass
 
-    pinch = _pinch(channel)
-    self._write(pinch)
-    self._write(GPIO_ANALOG)
-    while True:
-      v = self._read(10, termset="\r\n")
-
-      if len(v) == 10:
-        break
-      self.trace("retrying")
-
-    self.trace("input read back:" + str(v) + " len:" + str(len(v)))
-    if len(v) == 1:
-      self.trace("single returned char is ord:" + str(ord(v[0])))
-
-    v = v.split("i")[1]
-
-    value = float(v)
-    #rint(value)
-    return (value)
-    #return _parse_valuech("moo")
 
   def setup(self, channel, mode,pull_up_down=None):
     #TODO outer wrapper needs to do validation

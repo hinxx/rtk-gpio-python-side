@@ -63,9 +63,6 @@ def input(channel):
 def output(channel, value):
   instance.output(channel, value)
 
-def analogIn(channel):
-  return instance.cake(channel)
-
 def cleanup():
   instance.cleanup()
 

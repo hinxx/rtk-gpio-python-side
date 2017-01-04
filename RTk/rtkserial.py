@@ -32,7 +32,7 @@ for port in serialPorts:
         break
 if(rtkGPIOPort == ""):
 	print ("\nError: RTk.GPIO not detected.\nFor more support please visit our website at http://Ryanteck.com/rtk-000-00C\nPress enter to close.")
-	raw_input()
+	input()
 	exit()
 
 #print ("Debug cable fully detected fine.\n Press enter to launch the terminal.")
