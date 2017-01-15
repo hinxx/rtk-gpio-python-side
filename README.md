@@ -1,125 +1,26 @@
-RTK anyio V2.0 Dev
+RTk Python Library
 =====
 
-[![Build Status](http://rtkjenkins.servehalflife.com:8120/jenkins/buildStatus/icon?job=RTKGPIOPY)](http://rtkjenkins.servehalflife.com:8120/jenkins/job/RTKGPIOPY/)
+This library contains 2 main modules. GPIO and smbus.
 
-A GPIO Python module, that works on many platforms.
+The RTk.GPIO Library aims to replicate most functions found in the RPi.GPIO Library. You should be able to use existing code and tutorials by changing "RPi.GPIO" to "RTk.GPIO".
+You can also import it using either "from RTk import GPIO" or "import RTk.GPIO as GPIO" like you can with RPi.GPIO.
 
-Based on anyio by David Whale @whaleygeek, Improved by Ryan Walmsley @Ryanteck
+The RTk.smbus library aims to replicate the python-smbus library used to access I2C devices on the Raspberry Pi. You can import it by importing "RTk.smbus".
 
-The anyio package aims to mimic the basic functionality of the RPi.GPIO
-Python module that is used on the Raspberry Pi computer. 
-'Mimic' is used in the loosest sense of the word, because all it does is 
-to implement 5 functions of the same name as the RPi.GPIO module. 
-This allows you to write simple GPIO programs in Python, that work on 
-Raspberry Pi, PC, Mac and Linux computers.
+Documentation can be found on our wiki on how to use these.
 
+License
+=====
 
-This package consists of two parts - a Python module that runs on a PC, 
-Mac or Linux machine (well, anything that can run Python and pyserial), 
-and some firmware that is programmed to a microcontroller.
+This code is distributed under the GNU GPL V3 license and is Copyright Ryanteck LTD. 2016.
 
- The two are linked together by a serial port controlled by the pyserial 
-library. Calls to the anyio.GPIO methods on the host computer will 
-cause reads or writes to the GPIO pins on the microcontroller platform.
+In short the GNU GPL V3 License allows modification, distribution, commerical use, and more as long as the source code and any changes are re-distributed.
+However there is no warranty provided with this software.
 
-Supported Boards Are:
-Arduino Pro Micro
-<Insert new board here>
+The full license can be found in the License file. 
 
+GPIO Library originally based on AnyIO by David Whale (@whaleygeek) which is licensed under the MIT license and can be found at https://github.com/whaleygeek/anyio. Big thank you for the basis of this software.
 
-In this way, it is possible to write a hardware control program on any 
-platform, that can easily be ported between different platforms 
-(including the Raspberry Pi). Just change the "import RPi.GPIO as GPIO"
-to "import anyio.GPIO as GPIO" and change your pin numbers, and you'll
-be working in no time!
-
-
-The serial link between the two parts runs at varying speeds depending o the microcontroller, and each 
-command is only a few characters, so the system performs reasonably well
-unless you are repeatedly polling or changing lots of GPIO's at the same 
-time.
-
-The arduino pro micro runs at 115200 Baud and the <Insert new board here> at a faster baud rate.
-
-
-Board Options
-----
-Currently the <Insert new board here> is being funded on kickstarter over at 
-
-You can also buy an arduino pro mico pre-programmed ready to go from:
-http://skpang.co.uk/catalog/pro-micro-33v8mhz-with-headers-and-anyio-firmware-p-1327.html
-
-All you need to do is plug it in, download this module by choosing
-the "Download as Zip" button, unzip the file and run the test programs,
-and you'll be working in no time!
-
-You can also program your own pro micro and flash the firmware located at anyio/arduino/firmware/gpio/gpio.ino to get going.
-
-
-
-
-
-USE OF PYSERIAL
-----
-
-This module uses pyserial to communicate with the Arduino Pro Micro.
-
-anyio modifies the Python PACKAGEPATH for you when it runs,
-to make sure that it uses this embedded pyserial rather than one
-that might or might not be installed on your system. This means
-that if you don't have pyserial installed on your system, you should
-still be able to just run this out of the box and it should work.
-
-If you already have pyserial installed and want to use your installed
-version for any reason, you can change the anyio/arduino/GPIO.py
-USE_EMBEDDED_PYSERIAL = False
-
-
-FUTURE WORK
-----
-
-This package contains a console based (text mode) simulator that can be 
-used to test your programs on before you connect to real hardware, and 
-this supports both inputs and outputs. This console package
-works, but is not completely documented yet. You can try it with this:
-import anyio.console.GPIO as GPIO
-
-
-The GPIO interface itself could be anything, not just an Arduino. 
-There is a very simple protocol between the python module and the target 
-GPIO hardware, that is written in a way to allow future extension to 
-support other hardware peripherals such as I2C, SPI, UART, PWM, Analog, 
-OneWire and other protocols and features aimed at near real time control 
-and sensing.
-
-
-There are placeholders in the design for a tkinter GUI simulator that I 
-am planning to write soon, and also a network aware version, that 
-allows GPIO controls to be sent remotely over a network connection to 
-a GPIO server running on any arbitrary host computer (e.g. a Raspberry Pi).
-
-
-NOTES ABOUT COPYRIGHTED MATERIAL
-----
-
-The source code in the anyio package is (c) 2014 David Whale.
-
-There is an embedded version of pyserial inside the anyio package, and 
-this is provided in it's entirely complete form, with it's original 
-licence, which allows for it to be embedded inside other packages with 
-out any special install. 
-
-There is an embedded version of the ProMicro.inf file, which came from
-the SparkFun github repository. It is included here for convenience,
-but the latest copy can always be retrieved from here:
-
-https://github.com/sparkfun/SF32u4_boards/blob/master/driver/ProMicro.inf
-
-
-David Whale
-
-@whaleygeek
-
-June 2014
+This library requires pyserial and other python libraries to work. These are distributed under their own licenses.
 
