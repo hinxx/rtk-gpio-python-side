@@ -46,7 +46,8 @@ s.baudrate = BAUD
 s.parity   = serial.PARITY_NONE
 s.databits = serial.EIGHTBITS
 s.stopbits = serial.STOPBITS_ONE
-s.write_timeout = 1
+#s.write_timeout = 
+timeout = None
 
 s.close()
 s.port = rtkGPIOPort

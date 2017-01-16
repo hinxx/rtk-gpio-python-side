@@ -1,7 +1,9 @@
 #RTK.GPIO implementation of SMBUS
+from __future__ import *
 import RTk.rtkserial as rtkserial
 from pprint import pprint
 from time import sleep
+
 import binascii
 serial = rtkserial.s
 print("imported rtkbus")
