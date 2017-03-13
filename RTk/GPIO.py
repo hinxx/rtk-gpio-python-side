@@ -32,7 +32,7 @@ BOTH = 33
 RISING = 31
 FALLING = 32
 
-VERSION = "RTk.GPIO 0.3.12"
+VERSION = "RTk.GPIO 0.3.14"
 RPI_REVISION = 3
 RPI_INFO = {'P1_REVISION': 3, 'RAM': 'Unknown', 'REVISION': '90092', 'TYPE': 'Unknown','PROCESSOR': 'Unknown','MANUFACTURER':'Unknown'}
 
@@ -74,7 +74,7 @@ def input(channel):
 def output(channel, value):
   instance.output(channel, value)
 
-def cleanup():
+def cleanup(number=0):
   instance.cleanup()
 
 
