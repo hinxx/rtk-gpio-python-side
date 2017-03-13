@@ -1,13 +1,11 @@
 #RTK.GPIO implementation of SMBUS
-from __future__ import *
 import RTk.rtkserial as rtkserial
 from pprint import pprint
 from time import sleep
-
 import binascii
 serial = rtkserial.s
 print("imported rtkbus")
-i = 0.0017
+i = 0.25
 class SMBus:
 
     def __init__(self,bus):
@@ -125,7 +123,7 @@ class SMBus:
         self._write(i2caddrchar)
         self._write(chr(int(1)))
         self._write(chr(int(hex(command),0)))
-        wordDat1 =int(binascii.hexlify(serial.read()))
+        wordDat1 =int(binascii.hexlify(serial.read()),16)
         #return(wordDat2)
         byteDat = int(hex((wordDat1)),16)
         sleep(i)
@@ -133,7 +131,7 @@ class SMBus:
         return(byteDat)
 
     def read_i2c_block_data(self,i2caddress,command):
-        #Read a block (16 Bytes) of I2C Data
+
         blockData = []
         #Get the address and convert it to 8 bit for mbed and then convert to the char to send over.
         i2caddrchar = chr(int(hex(i2caddress<<1),0))
