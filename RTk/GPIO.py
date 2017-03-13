@@ -21,7 +21,18 @@ LOW     = 0
 PUD_OFF = 20
 PUD_DOWN = 21
 PUD_UP = 22
-VERSION = "RTk.GPIO 0.1A"
+
+#Dummy functions
+I2C = 42
+SPI = 41
+HARD_PWM = 43
+SERIAL = 40
+UNKNOWN = -1
+BOTH = 33
+RISING = 31
+FALLING = 32
+
+VERSION = "RTk.GPIO 0.3.12"
 RPI_REVISION = 3
 RPI_INFO = {'P1_REVISION': 3, 'RAM': 'Unknown', 'REVISION': '90092', 'TYPE': 'Unknown','PROCESSOR': 'Unknown','MANUFACTURER':'Unknown'}
 
